@@ -1,0 +1,33 @@
+<h2>Leave Request</h2>
+<%= form_for @changeset, email_path(@conn, :create), fn f -> %>
+  <div class="form-group <%= if f.errors[:name] do ~s(has-error) end %>">
+  <%= label f, "Name*", class: "control-label" %>&nbsp;&nbsp;
+    <%= text_input f, :name, placeholder: "Name", class: "form-control" %>
+    <%= error_tag f, :name %>
+  </div>
+  <div class="form-group <%= if f.errors[:email] do ~s(has-error) end %>">
+  <%= label f, "Email Address*", class: "control-label" %>&nbsp;&nbsp;
+    <%= text_input f, :email, placeholder: "example@example.com", class: "form-control" %>
+    <%= error_tag f, :email %>
+  </div>
+  <div class="form-group">
+   <%= label f, "Leave Type*", class: "control-label" %>&nbsp;&nbsp;
+    <%= select  f, :type_of_leave, [{"Sick", "Sick Leave"}, {"Sick", "Sick Leave"}, {"Casual", "Casual Leave"}, {"Earned", "Earned Leave"}, {"Absence", "Leave of Absence"}], class: "form-control"%>
+  </div>
+  <div class="form-group <%= if f.errors[:last_day_at_work] do ~s(has-error) end %>">
+  <%= label f, "Last Day At Work*", class: "control-label" %>&nbsp;&nbsp;
+    <%= text_input f, :last_day_at_work, placeholder: "Last day at work", class: "form-control", type: "date" %>
+      <%= error_tag f, :last_day_at_work %>
+  </div>
+  <div class="form-group <%= if f.errors[:first_day_back_at_work] do ~s(has-error) end %>">
+  <%= label f, "First Day At Work*", class: "control-label" %>&nbsp;&nbsp;
+    <%= text_input f, :first_day_back_at_work, placeholder: "First day back at work", class: "form-control", type: "date" %>
+  </div>
+
+  <div class="form-group <%= if f.errors[:no_of_days] do ~s(has-error) end %>">
+  <%= label f, "Total Number Of Days*", class: "control-label" %>&nbsp;&nbsp;
+    <%= text_input f, :no_of_days, placeholder: "No. of days", class: "form-control" %>
+    <%= error_tag f, :no_of_days %>
+  </div>
+  <%= submit "Submit", class: "btn btn-primary"%>
+<% end %>
